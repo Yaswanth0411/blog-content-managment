@@ -1,0 +1,22 @@
+# Install with:  pip install -r requirements.txt
+
+# Django — The web framework
+Django==4.2.7
+
+# Pillow — Required for ImageField (thumbnail/avatar uploads)
+Pillow==10.1.0
+
+# Django CKEditor — Rich text editor (WYSIWYG)
+django-ckeditor==6.7.0
+
+# Django Taggit — Tags system (ManyToMany tags with minimal setup)
+django-taggit==5.0.1
+
+# Whitenoise — Serves static files efficiently in production
+whitenoise==6.6.0
+
+# Python-decouple — Reads settings from .env file (keeps secrets safe)
+python-decouple==3.8
+
+# Gunicorn — Production WSGI server (for deployment)
+gunicorn==21.2.0

@@ -1,0 +1,65 @@
+{% extends 'blog/base.html' %}
+{% block title %}Search: "{{ query }}" — BlogCMS{% endblock %}
+{% block content %}
+<div class="page-header">
+    <div class="container">
+        <h1><i class="bi bi-search me-2"></i>Search Results</h1>
+        {% if query %}<p>Results for: <strong>"{{ query }}"</strong>{% endif %}</p>
+    </div>
+</div>
+<div class="container py-4">
+
+    <!-- Search bar -->
+    <form action="{% url 'search' %}" method="GET" class="mb-4">
+        <div class="input-group" style="max-width:500px;">
+            <input type="text" name="q" value="{{ query }}" class="form-control" placeholder="Search posts..." autofocus>
+            <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i> Search</button>
+        </div>
+    </form>
+
+    {% if query %}
+        {% if posts %}
+        <p class="text-muted mb-4">Found <strong>{{ posts.paginator.count }}</strong> result{{ posts.paginator.count|pluralize }}</p>
+        <div class="row g-4">
+            {% for post in posts %}
+            <div class="col-md-6 col-lg-4">
+                <div class="post-card">
+                    <div class="card-img-wrapper">
+                        {% if post.thumbnail %}
+                            <img src="{{ post.thumbnail.url }}" alt="{{ post.title }}" loading="lazy">
+                        {% else %}
+                            <div class="no-thumbnail"><i class="bi bi-journal-text"></i></div>
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        {% if post.category %}
+                        <a href="{{ post.category.get_absolute_url }}">
+                            <span class="category-badge" style="background:{{ post.category.color }}">{{ post.category.name }}</span>
+                        </a>
+                        {% endif %}
+                        <h3 class="card-title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+                        <p class="card-text">{{ post.excerpt|truncatewords:15 }}</p>
+                        <div class="card-footer-meta">
+                            <span><i class="bi bi-person-circle me-1"></i>{{ post.author.username }}</span>
+                            <span>{{ post.created_at|date:"M d, Y" }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="text-center py-5">
+            <div style="font-size:3.5rem;opacity:0.2;">🔍</div>
+            <h4 class="mt-3">No results found</h4>
+            <p class="text-muted">Try different keywords or browse all posts.</p>
+            <a href="{% url 'home' %}" class="btn btn-primary mt-2">Back to Home</a>
+        </div>
+        {% endif %}
+    {% else %}
+    <div class="text-center py-5">
+        <p class="text-muted">Enter a keyword above to search posts.</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
