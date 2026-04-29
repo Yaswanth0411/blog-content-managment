@@ -6,12 +6,11 @@ Django's command-line utility for administrative tasks.
 This is the main entry point for running Django commands.
 
 Common commands:
-    python manage.py runserver         → Start development server
-    python manage.py makemigrations    → Create migration files from model changes
+    python manage.py makemigrations blog   → Create migration files from model changes
     python manage.py migrate           → Apply migrations to the database
     python manage.py createsuperuser   → Create an admin account
-    python manage.py collectstatic     → Gather static files for production
-    python manage.py shell             → Open Django interactive Python shell
+    python manage.py runserver         → Start development server
+    
 """
 import os
 import sys
