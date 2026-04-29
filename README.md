@@ -29,3 +29,47 @@ The application follows Django’s **MVT (Model-View-Template)** architecture an
 ---
 
 ## 🧱 Project Structure
+blog_project/
+│
+├── blog/
+│ ├── models.py
+│ ├── views.py
+│ ├── urls.py
+│ ├── templates/
+│ │ ├── index.html
+│ │ ├── create.html
+│ │ ├── edit.html
+│
+├── blog_project/
+│ ├── settings.py
+│ ├── urls.py
+│
+├── db.sqlite3
+├── manage.py
+
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/Yaswanth0411/blog-content-managment.git
+cd blog-content-managment
+
+### Create virtual environment
+python -m venv venv
+source venv/bin/activate   # Linux / Mac
+venv\Scripts\activate      # Windows
+
+### Install Dependencies
+pip install django
+
+### Migrate the files
+python manage.py migrate
+
+### Run the server
+python manage.py runserver
+
+### Open in Browser
+http://127.0.0.1:8000/
